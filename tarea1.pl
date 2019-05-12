@@ -47,6 +47,8 @@ gusta(alfredo,X):-mujer(X),pelirrojo(X).
 % Mujeres
 gusta(susana,X):-hombre(X),pelonegro(X).
 gusta(josefina,X):-hombre(X),pelonegro(X),esrico(X).
+gusta(johanna,X):-hombre(X).
+gusta(martha,X):-hombre(X).
 
 % Match. Determina si dos personas se gustan mutuamente.
 % Recibe 2 argumentos. Tanto X como Y pueden tomar hombres o mujeres.
