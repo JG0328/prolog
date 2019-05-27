@@ -1,2 +1,2 @@
 natural(0).
-natural(s(X)):-natural(X).
+natural(X):-natural(Y), X is Y + 1.
