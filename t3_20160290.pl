@@ -17,7 +17,13 @@ notaaletra(X,Y):-X<0,Y='No es un numero positivo'.
 % Y -> El valor del sucesor de X.
 sucesor(X,Y):-Y is X + 1.
 % Punto 3
-
+% Se devuelve el antepenúltimo elemento de la lista. El caso más
+% sencillo es cuando se tienen tres elementos, el antepenúltimo será el
+% primer elemento de esa lista. En caso de que la lista tenga más de
+% tres elementos, se va descartando la cabeza y enviando la lsita
+% restante hasta que queden solo tres elementos.
+antepenultimo([X,_,_],X).
+antepenultimo([_,Y|Z],X):-antepenultimo([Y|Z],X).
 % Punto 4
 % Se devuelve una lista con los números pares encontrados en la lista
 % inicial. Utilizo par como regla auxiliar para simplificar la regla

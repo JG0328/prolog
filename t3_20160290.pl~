@@ -17,7 +17,8 @@ notaaletra(X,Y):-X<0,Y='No es un numero positivo'.
 % Y -> El valor del sucesor de X.
 sucesor(X,Y):-Y is X + 1.
 % Punto 3
-
+antepenultimo([X,_,_],X).
+antepenultimo([_,Y|Z],X):-antepenultimo([Y|Z],X).
 % Punto 4
 % Se devuelve una lista con los números pares encontrados en la lista
 % inicial. Utilizo par como regla auxiliar para simplificar la regla
@@ -34,7 +35,7 @@ pares([_|Y],Z):-pares(Y,Z).
 % Se devuelve una lista inversa a la lista original.
 % Existen dos casos base: si la lista está vacía, su inversa es otra
 % lista vacía. Si la lista solo tiene un elemento, su inversa es la
-% misma lista. X toma el valor de la cabeza de la lista que se envía, Y
+% misma lista. X toma el valor de la cabeza de la lista que se envía. Y
 % contiene la cola. Z es la lista inversa de la original. Cuando se
 % recorre la lista y solo queda un elemento, la regla se cumple y se
 % hacen los append's necesarios. W se utiliza para ir construyendo la
