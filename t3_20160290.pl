@@ -31,6 +31,17 @@ pares([],[]).
 pares([X|Y],[X|Z]):-par(X),pares(Y,Z).
 pares([_|Y],Z):-pares(Y,Z).
 % Punto 5
+% Se devuelve una lista inversa a la lista original.
+% Existen dos casos base: si la lista está vacía, su inversa es otra
+% lista vacía. Si la lista solo tiene un elemento, su inversa es la
+% misma lista. X toma el valor de la cabeza de la lista que se envía. Y
+% contiene la cola. Z es la lista inversa de la original. Cuando se
+% recorre la lista y solo queda un elemento, la regla se cumple y se
+% hacen los append's necesarios. W se utiliza para ir construyendo la
+% lista.
+inversa([],[]).
+inversa([X],[X]).
+inversa([X|Y],Z):-inversa(Y,W),append(W,[X],Z).
 
 
 
