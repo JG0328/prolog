@@ -31,5 +31,20 @@ legusta(juan,X) :- hamburger(X).
 % se lanza el fail.
 legusta(juan,X) :- \+ hamburger_marchena(X), hamburger(X).
 
-
 % Punto 4
+% Utilicé numlist/3 de los predicados pre-definidos en Prolog. Además
+% utilicé los predicados y reglas auxiliares de la tarea anterior para
+% trabajar con los números pares. X y Y son los límites de la lista que
+% se va a crear. Z es la lista final creada por numlist/3. Se crea otra
+% lista W con solo los números pares, con pares. Por último, se agrega
+% el predicado listado/1 con la lista, usando assertz, para insertar al
+% final. El corte evita que luego de lanzar true se quede esperando.
+% listado(X) devuelve todas las listas que se han creado.
+:-dynamic listado/1.
+
+par(X):-X mod 2 =:= 0.
+pares([],[]).
+pares([X|Y],[X|Z]):-par(X),pares(Y,Z).
+pares([_|Y],Z):-pares(Y,Z).
+
+aserta_pares(X,Y):-numlist(X,Y,Z),pares(Z,W),assertz(listado(W)),!.
