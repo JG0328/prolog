@@ -50,8 +50,7 @@ gusta(josefina,X):-hombre(X),pelonegro(X),esrico(X).
 gusta(johanna,X):-hombre(X).
 gusta(martha,X):-hombre(X).
 
-% Match. Determina si dos personas se gustan mutuamente.
-% Recibe 2 argumentos. Tanto X como Y pueden tomar hombres o mujeres.
-% Para que las parejas no se repitan, solo se toman en cuenta cuando X
-% es hombre.
-match(X,Y):-hombre(X),mujer(Y),gusta(X,Y),gusta(Y,X).
+% Match. Busca las personas que se gustan mutuamente.
+% Recibe 2 argumentos.
+gustamutuo(X,Y):-gusta(X,Y),gusta(Y,X).
+match(X,Y):-hombre(X),mujer(Y),gustamutuo(X,Y).
