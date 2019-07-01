@@ -51,6 +51,12 @@ gusta(johanna,X):-hombre(X).
 gusta(martha,X):-hombre(X).
 
 % Match. Busca las personas que se gustan mutuamente.
-% Recibe 2 argumentos.
+% Recibe 2 argumentos. X o Y pueden ser tanto hombre como mujer. El
+% corte y fallo se utiliza para evitar que se sigan buscando parejas una
+% vez se encuentren todas en la primera regla (hombre en primer lugar).
+% La tercera regla es para el caso de que la mujer esté en primer lugar.
+% Utilizo una regla auxiliar, para simplificar.
 gustamutuo(X,Y):-gusta(X,Y),gusta(Y,X).
 match(X,Y):-hombre(X),mujer(Y),gustamutuo(X,Y).
+match(X,_):-hombre(X),!,fail.
+match(X,Y):-mujer(X),hombre(Y),gustamutuo(X,Y).
