@@ -13,17 +13,17 @@ plato_fuerte(P) :- tipo(P, carne).
 coccion_lenta(P) :- tipo(P, postre).
 
 resuelve(true) :- !.
-resuelve( (A,B)) :- !, resuelve(A), resuelve(B).
+resuelve((A,B)) :- !, resuelve(A), resuelve(B).
 resuelve(A) :- falso(A), !, fail.
 resuelve(A) :- cierto(A), !.
-resuelve(A) :- clause(A,B), resuelve(B).
+resuelve(A) :- clause(A,B), resuelve(B),!.
 resuelve(A) :- preguntable(A), pregunta(A, Resp), responde(Resp, A).
 
 pregunta(A, Resp) :- visualiza_pregunta(A), read(Resp).
 visualiza_pregunta(A) :- write(A), write('(si/no/)? ').
 
-responde(si, A) :- !, assert(cierto(A)).
-responde(no, A ) :- !, assert(falso(A)), fail.
+responde(si, A) :- !, assertz(cierto(A)).
+responde(no, A ) :- !, assertz(falso(A)), fail.
 
 preguntable(tamano(_,_)).
 preguntable(tipo(_,_)).
