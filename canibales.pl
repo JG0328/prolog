@@ -30,3 +30,11 @@ seguro(estado(Ci,Mi,Cd,Md,_)):- (Ci=<Mi; Mi=0),
 sucesor(E1,E2) :- accion(A),
 		  resulta(E1,A,E2),
 		  seguro(E2).
+
+en_espaciobusqueda2(estado(3,3,0,0,izq),[]).
+en_espaciobusqueda2(E,L):-
+    en_espaciobusqueda2(Ep,Lp),
+    accion(A),
+    resulta(Ep,A,E),
+    seguro(E),
+    append(Lp,[A],L).
